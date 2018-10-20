@@ -1,0 +1,119 @@
+!###############################################################################
+!#                                                                            ##
+!#               __  __                                                       ##
+!#               \ \/ /_ __ ___  ___  ___  _   _ _ __ ___ ___  ___            ##
+!#                \  /| '__/ _ \/ __|/ _ \| | | | '__/ __/ _ \/ __|           ##
+!#            _   /  \| | |  __/\__ \ (_) | |_| | | | (_|  __/\__ \           ##
+!#           (_) /_/\_\_|  \___||___/\___/ \__,_|_|  \___\___||___/           ##
+!#                                                                            ##
+!#                                                                            ##
+!###############################################################################
+
+! Reload ~/.Xresources with the following command:
+! 	xrdb ~/.Xresources
+
+!==============================================================================#
+!------------------------       GENERAL SETTINGS        -----------------------#
+!==============================================================================#
+! Basic common settings
+*foreground: 		#00cc00
+*foreground_bold: 	#a8a19f
+*cursor: 		#a8a19f
+*background:       	#1b1918
+
+
+!==============================================================================#
+!------------------------       COLOUR SETTINGS        ------------------------#
+!==============================================================================#
+!! Define colours that can be used by X applications.
+!! i3 config can use these colours with the `set_from_resource` command
+!
+!! Black
+*color0: 	#1b1918
+*color8:	#766e6b
+!! Red
+*color1:	#f22c40
+*color9:	#f22c40
+!! Green
+*color2: 	#5ab738
+*color10: 	#5ab738
+!! Yellow
+*color3: 	#d5911a
+*color11: 	#d5911a
+!! Blue
+*color4: 	#407ee7
+*color12:	#407ee7
+!! Magenta
+*color5: 	#6666ea
+*color13:	#6666ea
+!! Cyan
+*color6: 	#00ad9c
+*color14:	#00ad9c
+!! White
+*color7: 	#a8a19f
+*color15: 	#f1efee
+
+
+!==============================================================================#
+!-------------------------        FONT SETTINGS        ------------------------#
+!==============================================================================#
+Xft.hinting:		true
+Xft.antialias:		true
+Xft.dpi:		96
+Xft.autohint:		true
+Xft.hintstyle:		hintfull
+Xft.lcdfilter:		lcdfilter
+
+!==============================================================================#
+!-------------------------       URXVT SETTINGS        ------------------------#
+!==============================================================================#
+URxvt*iso14755:         False
+URxvt.intensityStyles:	false
+URxvt.background:       [50]#000000
+URxvt.depth:		32
+URxvt.letterSpace:	0
+URxvt.font: 		xft:Hack Nerd Font Mono:size=11, \
+			xft:UbuntuMono Nerd Font Mono:size=13, \
+			xft:DejaVuSansMono Nerd Font Mono:size=13, \
+			xft:Inconsolata Nerd Font Mono:size=13, \
+			xft:Noto Sans:size=13, \
+			xft:Monospace:style=Medium:antialias=false
+URxvt.savelines:	2000
+URxvt.scrollBar:	false
+URxvt.cursorColor:	white
+
+
+!==============================================================================#
+!------------------------       URXVT EXTENSIONS        -----------------------#
+!==============================================================================#
+!!!! Extensions
+!!URxvt.perl-ext-common:	default,matcher,resize-font,url-select,keyboard-select
+!!URxvt.colorUL:		#4682B4
+!!!! url-select
+!!URxvt.keysym.M-u:	perl:url-select:select_next
+!!URxvt.url-select.launcher: linkhandler
+!!URxvt.url-select.underline: true
+!!!! keyboard-select:
+!!URxvt.keysym.M-Escape: perl:keyboard-select:activate
+!!!! resize-font
+!!URxvt.resize-font.smaller:	C-Down
+!!URxvt.resize-font.bigger:	C-Up
+!!!! Matcher
+!!URxvt.url-launcher:	linkhandler
+!!URxvt.matcher.button:	1
+
+!==============================================================================#
+!-------------------------        ROFI SETTINGS        ------------------------#
+!==============================================================================#
+!!rofi.color-enabled:	true
+!!rofi.color-window:	#000, #000, #000
+!!rofi.color-normal:	#111, #819396, #222, #008ed4, #ffffff
+!!rofi.color-active:	#002b37, #008ed4, #003643, #008ed4, #66c6ff
+!!rofi.color-urgent:	#002b37, #da4281, #003643, #008ed4, #890661
+!!
+!!rofi.fake-transparency:	true
+!!rofi.lines:		3
+!!rofi.bw:		0
+!!rofi.opacity:		"10"
+!!rofi.hide-scrollbar:	true
+!!rofi.width:		30

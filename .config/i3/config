@@ -1,0 +1,234 @@
+################################################################################
+##                                                                            ##
+##                _  _____     ___                __  _                       ##
+##               (_)|___ /    / __\ ___   _ __   / _|(_)  __ _                ##
+##               | |  |_ \   / /   / _ \ | '_ \ | |_ | | / _` |               ##
+##               | | ___) | / /___| (_) || | | ||  _|| || (_| |               ##
+##               |_||____/  \____/ \___/ |_| |_||_|  |_| \__, |               ##
+##                                                       |___/                ##
+##                                                                            ##
+################################################################################
+
+#==============================================================================#
+#------------------------       GENERAL SETTINGS        -----------------------#
+#==============================================================================#
+for_window [class="^.*"] border pixel 1
+gaps inner 15
+gaps outer 15
+set $term --no-startup-id $TERMINAL
+set $mod Mod4
+
+# Load Wallpaper
+exec_always --no-startup-id feh --bg-scale $HOME/.config/wall.png
+
+# Composite Manager (Required for urxvt transparency with i3)
+exec --no-startup-id compton --xrender-sync-fence
+
+# Launch PolyBar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# Hide mouse cursor after small delay
+exec --no-startup-id unclutter
+
+
+#==============================================================================#
+#------------------------        COLOUR SETTINGS        -----------------------#
+#==============================================================================#
+# Use colours defined in Xresources / Xdefaults
+# Syntax:
+# 	set_from_resource <i3 variable> <X variable lookup> <fallback option>
+set_from_resource $darkblack		color0	#000000
+set_from_resource $black		color8	#000000
+set_from_resource $darkred		color1	#000000
+set_from_resource $red			color9	#000000
+set_from_resource $darkgreen		color2	#000000
+set_from_resource $green		color10	#000000
+set_from_resource $darkyellow		color3	#000000
+set_from_resource $yellow		color11	#000000
+set_from_resource $darkblue		color4	#000000
+set_from_resource $blue			color12	#000000
+set_from_resource $darkmagenta		color5	#000000
+set_from_resource $magenta		color13	#000000
+set_from_resource $darkcyan		color6	#000000
+set_from_resource $cyan 		color14	#000000
+set_from_resource $darkwhite		color7	#000000
+set_from_resource $white		color15	#000000
+set $transparent			#00000000
+
+#			BORDER		BACKGROUND	TEXT		INDICATOR	CHILD_BORDER
+client.focused		$red		$red		$magenta	$darkmagenta	$darkblue
+client.unfocused	$transparent	$blue		$white		$darkblue	$darkblack
+client.focused_inactive	$transparent	$blue		$white		$darkblue	$darkblack
+client.urgent		$darkred	$darkred	$black		$darkred	$darkred
+client.background 	$black
+
+## Settings for i3bar/i3blocks
+#bar {
+#	font pango:mono 11
+#	colors {
+#		background 		$darkblack
+#		statusline 		$darkwhite
+#		separator  		$cyan
+#		focused_workspace	$blue		$darkblue	$darkblack
+#		active_workspace	$blue		$blue		$darkwhite
+#		inactive_workspace	$darkblack	$darkblack	$white
+#		urgent_workspace	$darkblack	$darkblack	$white
+#		}
+#	status_command i3blocks
+#	position top
+#	mode dock
+#	modifier None
+#}
+
+#==============================================================================#
+#------------------------       BASIC KEY BINDINGS      -----------------------#
+#==============================================================================#
+bindsym $mod+Return		exec $term
+bindsym $mod+Shift+Return	exec $term
+
+bindsym $mod+Shift+space	floating toggle
+bindsym $mod+space		focus mode_toggle
+
+bindsym $mod+Escape		workspace prev
+bindsym $mod+Shift+Escape	exec --no-startup-id prompt "Exit i3?" "i3-msg exit"
+
+#bindsym $mod+BackSpace
+#bindsym $mod+Shift+BackSpace	exec --no-startup-id prompt "Reboot?" "$reboot"
+
+#bindsym $mod+grave
+#bindsym $mod+asciitilde
+
+#bindsym $mod+Shift+Delete
+
+#==============================================================================#
+#------------------------      LETTER KEY BINDINGS      -----------------------#
+#==============================================================================#
+bindsym $mod+q			[con_id="__focused__" instance="^(?!math|dropdown).*$"] kill
+bindsym $mod+Shift+q		[con_id="__focused__" instance="^(?!math|dropdown).*$"] kill
+
+bindsym $mod+w			exec --no-startup-id $BROWSER
+bindsym $mod+Shift+w		exec --no-startup-id $BROWSER --private-window
+
+#bindsym $mod+e
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym $mod+r			exec $term -e ranger
+bindsym $mod+Shift+r		exec $term -e sudo ranger /
+
+bindsym $mod+t			split toggle
+bindsym $mod+Shift+t		gaps inner current set 15; gaps outer current set 15
+
+#bindsym $mod+y
+#bindsym $mod+Shift+y
+
+#bindsym $mod+u
+#bindsym $mod+Shift+u
+
+bindsym $mod+i			exec $term -e htop
+#bindsym $mod+Shift+i
+
+bindsym $mod+o			sticky toggle
+#bindsym $mod+Shift+o
+
+#bindsym $mod+p
+#bindsym $mod+Shift+p
+
+#bindsym $mod+a
+#bindsym $mod+Shift+a
+
+bindsym $mod+s			gaps inner current plus 5
+bindsym $mod+Shift+s		gaps inner current minus 5
+
+bindsym $mod+d			exec --no-startup-id dmenu_run
+bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
+
+bindsym $mod+f			fullscreen toggle
+#bindsym $mod+Shift+f
+
+bindsym $mod+g			workspace prev
+#bindsym $mod+Shift+g
+
+bindsym $mod+h			focus left
+bindsym $mod+Shift+h		move left 30
+
+bindsym $mod+j			focus down
+bindsym $mod+Shift+j		move down 30
+
+bindsym $mod+k			focus up
+bindsym $mod+Shift+k		move up 30
+
+bindsym $mod+l			focus right
+bindsym $mod+Shift+l		move right 30
+
+bindsym $mod+z			gaps outer current plus 5
+bindsym $mod+Shift+z		gaps outer current minus 5
+
+#bindsym $mod+x
+#bindsym $mod+Shift+x
+
+#bindsym $mod+c
+#bindsym $mod+Shift+c
+
+#bindsym $mod+v
+#bindsym $mod+Shift+v
+
+bindsym $mod+b			bar mode toggle
+bindsym $mod+Shift+b		floating toggle; sticky toggle; exec --no-startup-id bottomleft
+
+#bindsym $mod+n
+#bindsym $mod+Shift+n
+
+#bindsym $mod+m
+#bindsym $mod+Shift+m
+
+bindsym $mod+F2			restart
+#==============================================================================#
+#------------------------      ARROW KEY BINDINGS      ------------------------#
+#==============================================================================#
+bindsym $mod+Left 		focus left
+bindsym $mod+Down 		focus down
+bindsym $mod+Up 		focus up
+bindsym $mod+Right 		focus right
+bindsym $mod+Shift+Left 	move left
+bindsym $mod+Shift+Down 	move down
+bindsym $mod+Shift+Up 		move up
+bindsym $mod+Shift+Right 	move right
+
+#==============================================================================#
+#------------------------       WORKSPACE BINDINGS      -----------------------#
+#==============================================================================#
+# Set workspace names
+set $ws1 			"1"
+set $ws2 			"2"
+set $ws3 			"3"
+set $ws4 			"4"
+set $ws5 			"5"
+set $ws6 			"6"
+set $ws7 			"7"
+set $ws8 			"8"
+set $ws9 			"9"
+set $ws10 			"10"
+
+# Switch workspaces
+bindsym $mod+1 			workspace $ws1
+bindsym $mod+2 			workspace $ws2
+bindsym $mod+3 			workspace $ws3
+bindsym $mod+4 			workspace $ws4
+bindsym $mod+5 			workspace $ws5
+bindsym $mod+6 			workspace $ws6
+bindsym $mod+7 			workspace $ws7
+bindsym $mod+8 			workspace $ws8
+bindsym $mod+9 			workspace $ws9
+bindsym $mod+0 			workspace $ws10
+
+# Move current window to workspace
+bindsym $mod+Shift+1 		move container to workspace $ws1
+bindsym $mod+Shift+2 		move container to workspace $ws2
+bindsym $mod+Shift+3 		move container to workspace $ws3
+bindsym $mod+Shift+4 		move container to workspace $ws4
+bindsym $mod+Shift+5 		move container to workspace $ws5
+bindsym $mod+Shift+6 		move container to workspace $ws6
+bindsym $mod+Shift+7 		move container to workspace $ws7
+bindsym $mod+Shift+8 		move container to workspace $ws8
+bindsym $mod+Shift+9 		move container to workspace $ws9
+bindsym $mod+Shift+0 		move container to workspace $ws10
